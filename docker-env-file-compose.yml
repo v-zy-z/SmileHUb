@@ -1,0 +1,68 @@
+version: '3.8'
+
+services:
+  # Base de datos PostgreSQL
+  smilehub-pg-db:
+    image: postgres:${POSTGRES_VERSION:-15} # Pone 15 por defecto si falla la variable
+    restart: unless-stopped
+    container_name: smilehub-pg-db-dev
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "${DB_PGSQL_PORT_PUBLIC:-5432}:5432"
+    volumes:
+      - smilehub-pg-data-dev:/var/lib/postgresql/data
+    networks:
+      smilehub-network-dev:
+        ipv4_address: 171.21.0.251
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+  # Adminer (Gestor ligero de BD)
+  smilehub-adminer-2:
+    image: adminer
+    container_name: smilehub-adminer-container-2
+    restart: unless-stopped
+    ports:
+      - "8081:8080"
+    depends_on:
+      - smilehub-pg-db  # CORREGIDO: Apunta al nombre real
+    networks:
+      smilehub-network-dev: # CORREGIDO: Apunta a la red que existe
+        ipv4_address: 171.21.0.253
+
+  # PgAdmin (Gestor avanzado de BD)
+  smilehub-pgadmin-2:
+    container_name: smilehub-pgadmin-container-2
+    image: dpage/pgadmin4
+    restart: unless-stopped
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "admin@smilehub.org"
+      PGADMIN_DEFAULT_PASSWORD: "admin123"
+    ports:
+      - "16543:80"
+    depends_on:
+      - smilehub-pg-db # CORREGIDO: Apunta al nombre real
+    networks:
+      smilehub-network-dev:
+        ipv4_address: 171.21.0.254
+
+networks:
+  smilehub-network-dev:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 171.21.0.0/24
+
+volumes:
+  smilehub-pg-data-dev:
+    name: smile-hub-data-local
+    driver: local
+    # He simplificado el volumen para evitar errores de ruta en Linux

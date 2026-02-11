@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<server description="SmileHub Server">
+
+    <featureManager>
+        <feature>jakartaee-10.0</feature>
+        <feature>microProfile-6.0</feature>
+        <feature>jdbc-4.3</feature>
+    </featureManager>
+
+    <httpEndpoint id="defaultHttpEndpoint" host="*" httpPort="9080" httpsPort="9443" />
+
+    <dataSource id="SmileHubDS" jndiName="jdbc/jbrewDS">
+        <jdbcDriver libraryRef="PostgreSQLDriver"/>
+        <properties.postgresql
+                serverName="localhost"
+                portNumber="5434"
+                databaseName="smilehub_db"
+                user="smileuser"
+                password="smileUser2525"/>
+    </dataSource>
+
+    <library id="PostgreSQLDriver">
+        <fileset dir="${server.config.dir}/lib" includes="*.jar"/>
+    </library>
+
+</server>

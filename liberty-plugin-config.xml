@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<liberty-plugin-config>
+    <installDirectory>/home/belldem/Escritorio/SmileHubAPP/target/liberty/wlp</installDirectory>
+    <assemblyArtifact>
+        <groupId>io.openliberty</groupId>
+        <artifactId>openliberty-kernel</artifactId>
+        <version>26.0.0.1</version>
+        <type>zip</type>
+    </assemblyArtifact>
+    <assemblyArchive>/home/belldem/.m2/repository/io/openliberty/openliberty-kernel/26.0.0.1/openliberty-kernel-26.0.0.1.zip</assemblyArchive>
+    <assemblyInstallDirectory>/home/belldem/Escritorio/SmileHubAPP/target/liberty</assemblyInstallDirectory>
+    <refresh>false</refresh>
+    <serverDirectory>/home/belldem/Escritorio/SmileHubAPP/target/liberty/wlp/usr/servers/defaultServer</serverDirectory>
+    <userDirectory>/home/belldem/Escritorio/SmileHubAPP/target/liberty/wlp/usr</userDirectory>
+    <serverOutputDirectory>/home/belldem/Escritorio/SmileHubAPP/target/liberty/wlp/usr/servers/defaultServer</serverOutputDirectory>
+    <serverName>defaultServer</serverName>
+    <projectType>war</projectType>
+    <projectCompileDependency>org.primefaces:primefaces:15.0.0</projectCompileDependency>
+    <projectCompileDependency>org.primefaces:primefaces-themes:15.0.0</projectCompileDependency>
+    <projectCompileDependency>org.postgresql:postgresql:42.7.2</projectCompileDependency>
+    <projectCompileDependency>org.checkerframework:checker-qual:3.42.0</projectCompileDependency>
+    <projectCompileDependency>com.googlecode.owasp-java-html-sanitizer:owasp-java-html-sanitizer:20260102.1</projectCompileDependency>
+    <projectCompileDependency>com.googlecode.owasp-java-html-sanitizer:java8-shim:20260102.1</projectCompileDependency>
+    <projectCompileDependency>com.googlecode.owasp-java-html-sanitizer:java10-shim:20260102.1</projectCompileDependency>
+    <configDirectory>/home/belldem/Escritorio/SmileHubAPP/src/main/liberty/config</configDirectory>
+    <configFile>/home/belldem/Escritorio/SmileHubAPP/src/main/liberty/config/server.xml</configFile>
+    <appsDirectory>dropins</appsDirectory>
+    <looseApplication>true</looseApplication>
+    <stripVersion>false</stripVersion>
+    <installAppPackages>project</installAppPackages>
+    <applicationFilename>SmileHub.war.xml</applicationFilename>
+    <installAppsConfigDropins>/home/belldem/Escritorio/SmileHubAPP/target/liberty/wlp/usr/servers/defaultServer/configDropins/defaults/install_apps_configuration_1491924271.xml</installAppsConfigDropins>
+</liberty-plugin-config>
